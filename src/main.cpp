@@ -54,6 +54,16 @@ void loop()
 
     dominant.x_position = adxl0.x_position;
 
+    if (dominant.x_position > 0 && dominant.x_position > 1)
+        dominant.x_position = 1;
+    if (dominant.x_position < 0 && dominant.x_position < -1)
+        dominant.x_position = -1;
+
+    if (dominant.y_position > 0 && dominant.y_position > 1)
+        dominant.y_position = 1;
+    if (dominant.y_position < 0 && dominant.y_position < -1)
+        dominant.y_position = -1;
+
     fuzzyOutput = getFuzzyOutput(dominant.x_position, dominant.y_position);
 
     if (fuzzyOutput.left_position < 0)
