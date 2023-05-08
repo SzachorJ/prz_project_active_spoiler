@@ -7,12 +7,12 @@ FUZZY_OUTPUT tempFuzzyOutput = {0, 0};
 void setUpFuzzyLogic()
 {
     FuzzyInput *x_axis = new FuzzyInput(1);
-    FuzzySet *back = new FuzzySet(-100, -100, -100, -20);
-    x_axis->addFuzzySet(back);
+    FuzzySet *front = new FuzzySet(-100, -100, -100, -20);
+    x_axis->addFuzzySet(front);
     FuzzySet *middle = new FuzzySet(-100, 0, 0, 100);
     x_axis->addFuzzySet(middle);
-    FuzzySet *front = new FuzzySet(20, 100, 100, 100);
-    x_axis->addFuzzySet(front);
+    FuzzySet *back = new FuzzySet(20, 100, 100, 100);
+    x_axis->addFuzzySet(back);
     fuzzy->addFuzzyInput(x_axis);
 
     FuzzyInput *y_axis = new FuzzyInput(2);

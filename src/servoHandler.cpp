@@ -14,6 +14,9 @@ void setServoPosition(int position, int isNegative, Servo servo)
     if (position > 90)
         position = 90;
 
+    if (position < 0)
+        position = 0;
+
     if (isNegative == 1)
         servo.write(NEUTRAL_POSITION - position);
     if (isNegative == 0)

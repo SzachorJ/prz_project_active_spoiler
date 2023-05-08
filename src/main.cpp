@@ -4,6 +4,7 @@
 #include "fuzzyLogic.h"
 #include "logger.h"
 #include "sdHandler.h"
+#include "helpers.h"
 
 Servo lServo, rServo;
 
@@ -12,7 +13,7 @@ ADXL_DATA adxl1 = {0, 0, 0};
 ADXL_DATA adxl2 = {0, 0, 0};
 ADXL_DATA adxl3 = {0, 0, 0};
 ADXL_DATA adxl4 = {0, 0, 0};
-ADXL_DATA dominant = {0, 0, 0};
+ADXL_DATA average = {0, 0, 0};
 
 CONVERTED_DATA convertedData = {0, 0, 0};
 
@@ -45,26 +46,20 @@ void loop()
     adxl3 = readAdxlData(3);
     adxl4 = readAdxlData(4);
 
-    if (adxl2.y_position > 0 && adxl3.y_position > adxl2.y_position)
-        dominant.y_position = adxl3.y_position;
-    else if (adxl2.y_position < 0 && adxl1.y_position < adxl2.y_position)
-        dominant.y_position = adxl1.y_position;
-    else
-        dominant.y_position = adxl2.y_position;
+    average.x_position = getAverage(adxl0.x_position, adxl1.x_position, adxl2.x_position, adxl3.x_position, adxl4.x_position);
+    average.y_position = getAverage(adxl0.y_position, adxl1.y_position, adxl2.y_position, adxl3.y_position, adxl4.y_position);
 
-    dominant.x_position = adxl0.x_position;
+    if (average.x_position > 0 && average.x_position > 1)
+        average.x_position = 1;
+    if (average.x_position < 0 && average.x_position < -1)
+        average.x_position = -1;
 
-    if (dominant.x_position > 0 && dominant.x_position > 1)
-        dominant.x_position = 1;
-    if (dominant.x_position < 0 && dominant.x_position < -1)
-        dominant.x_position = -1;
+    if (average.y_position > 0 && average.y_position > 1)
+        average.y_position = 1;
+    if (average.y_position < 0 && average.y_position < -1)
+        average.y_position = -1;
 
-    if (dominant.y_position > 0 && dominant.y_position > 1)
-        dominant.y_position = 1;
-    if (dominant.y_position < 0 && dominant.y_position < -1)
-        dominant.y_position = -1;
-
-    fuzzyOutput = getFuzzyOutput(dominant.x_position, dominant.y_position);
+    fuzzyOutput = getFuzzyOutput(average.x_position, average.y_position);
 
     if (fuzzyOutput.left_position < 0)
         isNegativeLeft = 1;
