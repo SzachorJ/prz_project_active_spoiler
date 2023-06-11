@@ -9,6 +9,7 @@
 #define MAX_SERVO_POSITION 180
 
 void initializeServo(int pin1, int pin2, Servo servo1, Servo servo2);
+int returnServoPosition(int position, int isNegative);
 void setServoPosition(int position, int isNegative, Servo servo);
 
 #endif
