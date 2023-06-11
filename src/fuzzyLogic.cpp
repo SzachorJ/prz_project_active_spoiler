@@ -7,27 +7,27 @@ FUZZY_OUTPUT tempFuzzyOutput = {0, 0};
 void setUpFuzzyLogic()
 {
     FuzzyInput *x_axis = new FuzzyInput(1);
-    FuzzySet *front = new FuzzySet(-100, -100, -100, -20);
-    x_axis->addFuzzySet(front);
+    FuzzySet *back = new FuzzySet(-100, -100, -100, -10);
+    x_axis->addFuzzySet(back);
     FuzzySet *middle = new FuzzySet(-100, 0, 0, 100);
     x_axis->addFuzzySet(middle);
-    FuzzySet *back = new FuzzySet(20, 100, 100, 100);
-    x_axis->addFuzzySet(back);
+    FuzzySet *front = new FuzzySet(10, 100, 100, 100);
+    x_axis->addFuzzySet(front);
     fuzzy->addFuzzyInput(x_axis);
 
     FuzzyInput *y_axis = new FuzzyInput(2);
-    FuzzySet *left = new FuzzySet(-100, -100, -100, -20);
+    FuzzySet *left = new FuzzySet(-100, -100, -100, -10);
     y_axis->addFuzzySet(left);
     FuzzySet *center = new FuzzySet(-100, 0, 0, 100);
     y_axis->addFuzzySet(center);
-    FuzzySet *right = new FuzzySet(20, 100, 100, 100);
+    FuzzySet *right = new FuzzySet(10, 100, 100, 100);
     y_axis->addFuzzySet(right);
     fuzzy->addFuzzyInput(y_axis);
 
     FuzzyOutput *leftPosition = new FuzzyOutput(1);
     FuzzySet *left_tilt_right = new FuzzySet(-90, -90, -90, 0);
     leftPosition->addFuzzySet(left_tilt_right);
-    FuzzySet *left_middle = new FuzzySet(-90, -10, 10, 90);
+    FuzzySet *left_middle = new FuzzySet(-90, 0, 0, 90);
     leftPosition->addFuzzySet(left_middle);
     FuzzySet *left_tilt_left = new FuzzySet(0, 90, 90, 90);
     leftPosition->addFuzzySet(left_tilt_left);
@@ -36,7 +36,7 @@ void setUpFuzzyLogic()
     FuzzyOutput *rightPosition = new FuzzyOutput(2);
     FuzzySet *right_tilt_right = new FuzzySet(-90, -90, -90, 0);
     rightPosition->addFuzzySet(right_tilt_right);
-    FuzzySet *right_middle = new FuzzySet(-90, -10, 10, 90);
+    FuzzySet *right_middle = new FuzzySet(-90, 0, 0, 90);
     rightPosition->addFuzzySet(right_middle);
     FuzzySet *right_tilt_left = new FuzzySet(0, 90, 90, 90);
     rightPosition->addFuzzySet(right_tilt_left);
