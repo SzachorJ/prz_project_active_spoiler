@@ -23,12 +23,10 @@ typedef struct _converted_data_
 
 } CONVERTED_DATA;
 
-void tcaSelect(uint8_t channel);
+void tcaAccelSelect(uint8_t channel);
 
-void initializeTransmission(uint8_t channel);
+void initializeAccelTransmission(uint8_t channel);
 
 ADXL_DATA readAdxlData(uint8_t channel);
-
-CONVERTED_DATA convertData(ADXL_DATA data);
 
 #endif

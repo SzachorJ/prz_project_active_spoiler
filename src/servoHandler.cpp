@@ -23,7 +23,7 @@ int returnServoPosition(int position, int isNegative)
     }
     if (isNegative == 0)
     {
-        return NEUTRAL_POSITION - position;
+        return NEUTRAL_POSITION + position;
     }
 }
 
